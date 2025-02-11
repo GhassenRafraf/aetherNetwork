@@ -20,7 +20,7 @@ The **Networking Application** implements the **AODV (Ad-hoc On-Demand Distance 
 ---
 
 ## 🏗 Project Structure
-
+```bash
 aetherNetwork/
 │── src/
 │   ├── main.c
@@ -32,7 +32,7 @@ aetherNetwork/
 │   ├── task_manager.h
 │── CMakeLists.txt
 │── Dockerfile
-
+```
 
 
 
