@@ -7,14 +7,12 @@
 #include "network.h"
 #include "aodv.h"
 
-int node_id;
-char node_ip[16];
+char node_ip[16];  
 pthread_t listener_thread;
 
 void init_network(int id, const char* ip) {
-    node_id = id;
-    strncpy(node_ip, ip, 16);
-
+    // 'node_id' is already defined in aodv.c; here we just store the IP.
+    strncpy(node_ip, ip, sizeof(node_ip));
     pthread_create(&listener_thread, NULL, receive_messages, NULL);
 }
 
@@ -43,12 +41,15 @@ void* receive_messages(void* arg) {
 
     while (1) {
         socklen_t len = sizeof(client_addr);
-        recvfrom(sock, buffer, 1024, 0, (struct sockaddr*)&client_addr, &len);
-        buffer[strcspn(buffer, "\n")] = 0;
-
+        int n = recvfrom(sock, buffer, sizeof(buffer) - 1, 0, (struct sockaddr*)&client_addr, &len);
+        if(n > 0) {
+            buffer[n] = '\0';
+        }
+        // Retrieve sender's IP address
         char sender_ip[INET_ADDRSTRLEN];
         inet_ntop(AF_INET, &client_addr.sin_addr, sender_ip, INET_ADDRSTRLEN);
 
         handle_received_message(buffer, sender_ip);
     }
+    return NULL;
 }

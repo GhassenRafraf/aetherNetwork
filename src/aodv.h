@@ -10,11 +10,21 @@
 #define BROADCAST_ADDR "255.255.255.255"
 #define AODV_PORT 5555
 
-void init_aodv(int node_id, const char* ip);
+extern int node_id;  // Global node ID
+
+// Initialize AODV and network (ip is our local IP)
+void init_aodv(int id, const char* ip);
+
+// Send a Route Request for destination
 void send_rreq(int destination);
-void send_rrep(int destination, int next_hop);
+
+// Send a Route Reply back to a target IP
+void send_rrep(int destination, const char* target_ip);
+
+// Send a Route Error for a broken link
 void send_rerr(int broken_link);
-void listen_for_messages();
-void handle_received_message(char* buffer, int sender);
+
+// Handle a received message (sender_ip is the IP from which the message came)
+void handle_received_message(char* buffer, const char* sender_ip);
 
 #endif
