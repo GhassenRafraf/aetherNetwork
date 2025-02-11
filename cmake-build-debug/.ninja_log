@@ -1,7 +1,0 @@
-# ninja log v5
-2	115	7609752005971960	CMakeFiles/aetherNetwork.dir/src/main.c.obj	279de508ea466c32
-11	312	7609751431348832	CMakeFiles/aetherNetwork.dir/src/aodv.c.obj	402e73e8ff425139
-20	340	7609751431666362	CMakeFiles/aetherNetwork.dir/src/routing_table.c.obj	6b932219fdcb8b5b
-115	225	7609752007005167	aetherNetwork.exe	bdf2c421d50842f0
-13	118	7609756546559476	CMakeFiles/aether-networking.dir/src/main.c.obj	690585d6669a39a6
-1	1213	7609756557570706	CMakeFiles/aether-networking.dir/src/network.c.obj	f4a4eb9d4548d06c

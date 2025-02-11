@@ -11,7 +11,6 @@ char node_ip[16];
 pthread_t listener_thread;
 
 void init_network(int id, const char* ip) {
-    // 'node_id' is already defined in aodv.c; here we just store the IP.
     strncpy(node_ip, ip, sizeof(node_ip));
     pthread_create(&listener_thread, NULL, receive_messages, NULL);
 }
